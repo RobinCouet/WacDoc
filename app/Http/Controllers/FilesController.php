@@ -97,54 +97,11 @@ class FilesController extends Controller
                             ]);
                     }
                 }
-            }/*else{
-
-                if($_FILES['filess']['name'][0] != ''){
-
-                // on recupere le chemin public, et on ajoute le chemin vers le dossier upload
-                    $path = public_path() . "/upload/$id/";
-
-                // on vérifi si le dossier existe déja
-                    if(file_exists("/upload/$id/")){
-
-                    }else{
-                // on crée le dossier non recursif
-                // mkdir($path, 0755, false);
-                    }
-                    $name = $_FILES['filess']['name'][0];
-                    $tmp = $_FILES['filess']['tmp_name'][0];
-                    $size = $_FILES['filess']['size'][0];
-                    $type = $_FILES['filess']['type'][0];
-                    
-                    if(!file_exists($path.$name.'.'.$type)){
-
-                        DB::table('files')->insert([
-                            'size' => $size, 
-                            'type' => $type,
-                            'filename' => $name,
-                            'user_id' => $id,
-                            'choices' => 'private'
-                            ]);
-                        move_uploaded_file($_FILES['filess']['tmp_name'][0], $path.$name);
-
-                        Session::flash('message','Upload réussi avec success !');
-                        Session::flash('alert-class','alert-success');
-                        return redirect('/');
-                    }else{
-                     Session::flash('message','Upload failed, le fichiers existe déja !');
-                     Session::flash('alert-class','alert-danger');
-                     return redirect('/');
-                 }
-             }else{
-                Session::flash('message','Vous n\'avez mis aucun fichiers à upload !');
-                Session::flash('alert-class','alert-danger');
-                return redirect('/');
             }
-        }*/
-    }else{
-        Session::flash('message','Vous ne pouvez pas uploadé de fichiers sans vous connecter !');
-        Session::flash('alert-class','alert-danger');
-        return redirect('/login');
+        } else {
+            Session::flash('message','Vous ne pouvez pas uploadé de fichiers sans vous connecter !');
+            Session::flash('alert-class','alert-danger');
+            return redirect('/login');
     }
 }
 
